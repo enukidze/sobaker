@@ -1,7 +1,7 @@
 
 <html>
 <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image.prod.js"></script>
-<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
@@ -10,17 +10,27 @@
   <body>
 
     
-    <a-scene mindar-image="imageTargetSrc: ./sobaker.mind;   uiScanning:no; uiLoading:no " vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-    <a-asset-item id="sobaker" src="./glb/sobaker3.glb"></a-asset-item> 
+    <a-scene mindar-image="imageTargetSrc: ./sobaker.mind;   uiScanning:no; uiLoading:no " vr-mode-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false" 
+        renderer="colorManagement: true, physicallyCorrectLights"
+        gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/versioned/decoders/1.5.6/" gesture-detector
+        loading-screen="enabled: false">
+      <a-camera position="0 0 0 " look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;"
+      raycaster="far: 5000; objects: .clickable"></a-camera>
+
+    <a-asset-item id="sobaker" src="./glb/sobaker.glb"></a-asset-item> 
    
 
       <a-entity mindar-image-target="targetIndex: 0">
 
         <!-- <a-plane color="blue" opaciy="0.5" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane> -->
-          <a-entity id="sobaker" src="./glb/Diffuse.png" gltf-model="#sobaker" position="0 -1 0" rotation="0  0 0" scale="0.7 0.7 0.7" 
-          animation-mixer> </a-entity>   
-
+          <a-entity id="sobaker"  gltf-model="#sobaker" position="0 -1 0" rotation="0  0 0" scale="1 1 1" class="clickable" 
+          onclick="window.location.href= 'https:/sobaker.com/products/sobaker-hoodie' " 
+          > </a-entity>   
+          <a-entity id="sobakerbtn" class="clickable" geometry="primitive: plane; height: 1; width: 1;" onclick="window.location.href='https:/sobaker.com/  ' " 
+          position="0 1.1 0" rotation="0 0 0" material="src: ./assets/sobakker.png; opacity: 1; transparent: true;"></a-entity>
+          <a-entity id="sobakerbtn" class="clickable" geometry="primitive: plane; height: 1; width: 1;" onclick="window.location.href='https:/sobaker.com/pages/join  ' " 
+          position="0 -1.1 0" rotation="0 0 90" material="src: ./assets/TEN_TANK.png; opacity: 1; transparent: true;"></a-entity>
       </a-entity>
     </a-scene>
   </body>
